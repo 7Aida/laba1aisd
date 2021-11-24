@@ -1,26 +1,27 @@
 #pragma once
 #include <iostream>
-class Setnew
+class Set
 {
 private:
-	int* _data;
 	int _size;
-	int _maxsize;
+    int _maxsize;
+	int* _data;
 public:
-	Setnew() :_size(0), _maxsize(0), _data(new int[0]) {};
-	Setnew(int* _data, int _size, int _maxsize);
-	Setnew(const Setnew& rhs);
+	Set() :_size(0), _maxsize(0), _data(new int[_maxsize]) {};
+	Set(int* _data, int _size, int _maxsize);
+	Set(const Set& rhs);
 	int get_size() const;
 	int get_maxsize() const;
-	~Setnew()
+	~Set()
 	{
 		delete[] _data;
 	}
 	int& operator()(int size);
-	Setnew operator-(Setnew&);
-	Setnew operator*(Setnew&);
-	Setnew operator+(Setnew&);
-	Setnew operator%(int);
-	Setnew operator/(int);
-	friend std::ostream& operator<<(std::ostream& s, const Setnew& o);
+	Set operator-(const Set&);
+	Set operator*(const Set&);
+	Set operator+(const Set&);
+	void operator+=(int);
+	void operator-=(int);
+	Set& operator=(const Set&);
+	friend std::ostream& operator<<(std::ostream& s, const Set& o);
 };
